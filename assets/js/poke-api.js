@@ -23,7 +23,7 @@ function convertPokemonToLiToPokemon(pokeDetail){
 pokeApi.getPokemonDetail = (pokemon) => {
     return fetch(pokemon.url)
     .then((response) => response.json())
-    .then(convertPokeApiDetailToPokemon)
+    .then(convertPokemonToLiToPokemon)
 }
 
 pokeApi.getPokemons = (offset = 0, limit = 5) => {
@@ -32,7 +32,6 @@ pokeApi.getPokemons = (offset = 0, limit = 5) => {
         .then((response) => response.json())
         .then((jsonBody) => jsonBody.results)
         .then((pokemons) => pokemons.map(pokeApi.getPokemonDetail))
-        .then((datailRequest) => Promisse.all(detailRequest))
+        .then((detailRequest) => Promise.all(detailRequest))
         .then((pokemnosDetails) => pokemnosDetails)
 }
-
